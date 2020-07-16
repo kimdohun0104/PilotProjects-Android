@@ -1,0 +1,5 @@
+include ':model'
+include ':api'
+include ':repository'
+include ':app'
+rootProject.name = "PilotHiltMultiModule"
