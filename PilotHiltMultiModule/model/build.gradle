@@ -1,11 +1,11 @@
 import dependencies.Deps
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
-apply from: rootProject.file('gradle/android.gradle')
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
     implementation Deps.Kotlin.kotlin
 }
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

@@ -2,7 +2,7 @@ import dependencies.Deps
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply from: rootProject.file('gradle/android.gradle')
 
@@ -11,4 +11,7 @@ dependencies {
     implementation project(path: ':model')
 
     implementation Deps.Kotlin.kotlin
+
+    implementation Deps.Hilt.android
+    kapt Deps.Hilt.compiler
 }
