@@ -1,0 +1,37 @@
+import dependencies.Deps
+import dependencies.Versions
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion Versions.compileSdkVersion
+
+    defaultConfig {
+        applicationId "dohun.kim.pilothiltmultimodule"
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':api')
+    implementation project(path: ':model')
+    implementation project(path: ':repository')
+
+    implementation Deps.Kotlin.kotlin
+
+    implementation Deps.AndroidX.appCompat
+    implementation Deps.AndroidX.constraintLayout
+}
