@@ -5,6 +5,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion Versions.compileSdkVersion
@@ -13,6 +14,7 @@ android {
         applicationId "dohun.kim.pilothiltmultimodule"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
+
         versionCode Versions.versionCode
         versionName Versions.versionName
 
@@ -25,6 +27,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding.enabled = true
+
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
@@ -36,10 +47,16 @@ dependencies {
 
     implementation Deps.AndroidX.appCompat
     implementation Deps.AndroidX.constraintLayout
+    implementation Deps.AndroidX.activity
+    implementation Deps.AndroidX.recyclerView
 
     implementation Deps.AndroidX.Hilt.lifecycleViewModel
     kapt Deps.AndroidX.Hilt.compiler
 
+    implementation Deps.AndroidX.LifeCycle.viewModelKtx
+
     implementation Deps.Hilt.android
     kapt Deps.Hilt.compiler
+
+    implementation Deps.glide
 }
