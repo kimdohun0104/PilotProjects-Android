@@ -1,10 +1,12 @@
 package dohun.kim.pilotdynamiclink.data
 
+import dohun.kim.pilotdynamiclink.model.RepositoryModel
 import dohun.kim.pilotdynamiclink.model.UserModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface GithubService {
 
@@ -25,4 +27,7 @@ interface GithubService {
 
     @GET("users")
     fun getUsers(): Call<List<UserModel>>
+
+    @GET("users/{username}/repos")
+    fun getRepositories(@Path("username") login: String): Call<List<RepositoryModel>>
 }

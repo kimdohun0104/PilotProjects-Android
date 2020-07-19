@@ -4,13 +4,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dohun.kim.pilotdynamiclink.R
-import dohun.kim.pilotdynamiclink.detail.DetailActivity
 import dohun.kim.pilotdynamiclink.model.UserModel
+import dohun.kim.pilotdynamiclink.repository.RepositoryActivity
 import kotlinx.android.synthetic.main.item_user.view.*
 
 class MainListAdapter :
@@ -22,10 +21,10 @@ class MainListAdapter :
             itemView.tv_login.text = user.login
             Glide.with(itemView).load(user.avatarUrl).into(itemView.iv_avatar)
             itemView.setOnClickListener {
-                it.context.startActivity(
-                    Intent(it.context, DetailActivity::class.java),
-                    bundleOf("login" to user.login)
-                )
+                Intent(it.context, RepositoryActivity::class.java).apply {
+                    putExtra("login", user.login)
+                    it.context.startActivity(this)
+                }
             }
         }
     }

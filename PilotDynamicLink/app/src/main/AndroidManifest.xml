@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".detail.DetailActivity">
+        <activity android:name=".repository.RepositoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -20,6 +20,7 @@
 
                 <data
                     android:host="pilotdynamiclink.page.link"
+                    android:path="/repository"
                     android:scheme="https" />
             </intent-filter>
         </activity>

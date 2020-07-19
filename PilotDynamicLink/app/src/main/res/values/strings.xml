@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PilotDynamicLink</string>
+    <string name="share">공유하기</string>
 </resources>
