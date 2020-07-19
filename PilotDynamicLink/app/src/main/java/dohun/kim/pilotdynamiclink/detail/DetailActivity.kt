@@ -7,6 +7,9 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import dohun.kim.pilotdynamiclink.R
 
 class DetailActivity : AppCompatActivity() {
+
+    private val login: String by lazy { intent.getStringExtra("login") ?: "" }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
