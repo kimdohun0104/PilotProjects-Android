@@ -16,17 +16,11 @@ data class RepositoryModel(
 ) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RepositoryModel>() {
-            override fun areItemsTheSame(
-                oldItem: RepositoryModel,
-                newItem: RepositoryModel
-            ): Boolean = oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: RepositoryModel, newItem: RepositoryModel): Boolean =
+                oldItem.id == newItem.id
 
-            override fun areContentsTheSame(
-                oldItem: RepositoryModel,
-                newItem: RepositoryModel
-            ): Boolean =
-                oldItem.private == newItem.private &&
-                        oldItem.fullName == newItem.fullName && newItem.name == oldItem.name
+            override fun areContentsTheSame(oldItem: RepositoryModel, newItem: RepositoryModel): Boolean =
+                oldItem.private == newItem.private && oldItem.fullName == newItem.fullName && newItem.name == oldItem.name
 
         }
     }

@@ -1,30 +1,24 @@
-package dohun.kim.pilotdynamiclink.repository
+package dohun.kim.pilotdynamiclink.ui.repository
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dohun.kim.pilotdynamiclink.R
+import dohun.kim.pilotdynamiclink.databinding.ItemRepositoryBinding
 import dohun.kim.pilotdynamiclink.model.RepositoryModel
-import kotlinx.android.synthetic.main.item_repository.view.*
 
 class RepositoryListAdapter :
     ListAdapter<RepositoryModel, RepositoryListAdapter.RepositoryHolder>(RepositoryModel.DIFF_CALLBACK) {
 
-    inner class RepositoryHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class RepositoryHolder(private val binding: ItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val repository = getItem(adapterPosition)
-            itemView.tv_full_name.text = repository.fullName
+            binding.repository = repository
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryHolder =
-        RepositoryHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
-        )
+        RepositoryHolder(ItemRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RepositoryHolder, position: Int) = holder.bind()
-
-
 }
