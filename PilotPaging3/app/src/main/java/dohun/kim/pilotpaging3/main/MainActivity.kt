@@ -31,15 +31,9 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
     }
 
-
     private fun setupRecyclerView() {
-        binding.rvGif.adapter = gifAdapter.withLoadStateFooter(GifLoadStateAdapter())
-
-        lifecycleScope.launch {
-            gifAdapter.loadStateFlow.collectLatest { loadState ->
-                binding.srlGif.isRefreshing = loadState.refresh is LoadState.Loading
-            }
-        }
+        binding.rvGif.adapter =
+            gifAdapter.withLoadStateFooter(GifLoadStateAdapter { gifAdapter.retry() })
 
         lifecycleScope.launch {
             viewModel.gifs.collectLatest { pagingData ->
@@ -49,6 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRefreshLayout() {
+        lifecycleScope.launch {
+            gifAdapter.loadStateFlow.collectLatest { loadState ->
+                binding.srlGif.isRefreshing = loadState.refresh is LoadState.Loading
+            }
+        }
+
         binding.srlGif.setOnRefreshListener {
             gifAdapter.refresh()
         }

@@ -10,15 +10,11 @@ import dohun.kim.pilotpaging3.data.GifPagingSource
 import dohun.kim.pilotpaging3.data.GiphyService
 import dohun.kim.pilotpaging3.model.GifModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 
 class MainViewModel : ViewModel() {
     val gifs: Flow<PagingData<GifModel>> = Pager(PagingConfig(pageSize = 25)) {
         GifPagingSource(GiphyService.getInstance())
     }
         .flow
-        .catch { e ->
-
-        }
         .cachedIn(viewModelScope)
 }

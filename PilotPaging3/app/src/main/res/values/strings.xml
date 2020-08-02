@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PilotPaging3</string>
+    <string name="failure">실패</string>
+    <string name="retry">재시도</string>
 </resources>
